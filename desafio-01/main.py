@@ -2,10 +2,19 @@ from dataset import ImageDataset
 
 from torchvision import transforms
 import torch
+import pickle
 
-from train import train
-from test import test
-from model import ResNet_pt
+def compute_class_weights(dataset):
+    class_counts = {}
+    for _, label in dataset:
+        if label not in class_counts:
+            class_counts[label] = 0
+        class_counts[label] += 1
+
+    num_samples = len(dataset)
+    class_weights = [num_samples / class_counts[label] for _, label in dataset]
+
+    return class_weights
 
 def main():
 
@@ -22,22 +31,8 @@ def main():
     root_dir = "../MLChallenge_Dataset/Data"
     dataset = ImageDataset(root_dir,transform=transformation)
 
-    train_size = int(0.8 * len(dataset))
-    test_size = len(dataset) - train_size
-    train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
-
-    #carrega o dataset de treino e teste
-
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=32, shuffle=True)
-
-    #verifica o tamanho do dataset de treino e teste
-    print("Train dataset size: ", len(train_dataset))
-    print("Test dataset size: ", len(test_dataset))
-
-    model = ResNet_pt()
-
-    train(model, train_loader)
+    weights = compute_class_weights(dataset)                                 
+    pickle.dump(weights, open("weights.pkl", "wb"))
 
 if __name__ == '__main__':
     main()
