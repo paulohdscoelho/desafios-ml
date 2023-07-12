@@ -6,7 +6,7 @@ import torch
 import torchvision.transforms as transforms
 
 sys.path.append(os.path.abspath(os.path.join('../desafio-01/')))
-from model import ResNet
+from model import ResNet_pt
 
 app = Flask(__name__)
 PATH = "../desafio-01/output/k_cross_ResNet_state_dict.pt"
@@ -16,7 +16,7 @@ def index():
     
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
-    model = ResNet().to(device)
+    model = ResNet_pt().to(device)
     model.load_state_dict(torch.load(PATH))
     model.eval()
     
