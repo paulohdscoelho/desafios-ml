@@ -33,7 +33,7 @@ def mostra_sumario(foldperf):
     print(f"Training Precision: {np.mean(train_precision_f):.3f} \t Test Precision: {np.mean(test_precision_f):.3f} \t Training Recall: {np.mean(train_recall_f):.2f} \t Test Recall: {np.mean(test_recall_f):.2f}")
     print(f"Training F1: {np.mean(train_f1_f):.3f} \t Test F1: {np.mean(test_f1_f):.3f}")
 
-def plota_graficos(foldperf):
+def plota_graficos(foldperf, title):
       k = 5
 
       diz_ep = {'train_loss_ep':[],'test_loss_ep':[],'train_acc_ep':[],'test_acc_ep':[]}
@@ -53,7 +53,7 @@ def plota_graficos(foldperf):
       axs[0].set_xlabel('Epoch')
       axs[0].set_ylabel('Loss')
       axs[0].legend()
-      axs[0].set_title('Resnet balanced loss')
+      axs[0].set_title(title)
 
       # Plot accuracies
       axs[1].semilogy(diz_ep['train_acc_ep'], label='Train')
@@ -61,7 +61,7 @@ def plota_graficos(foldperf):
       axs[1].set_xlabel('Epoch')
       axs[1].set_ylabel('Accuracy')
       axs[1].legend()
-      axs[1].set_title('Resnet balanced accuracy')
+      axs[1].set_title(title)
 
       # Adjust the spacing between subplots
       plt.tight_layout()

@@ -1,20 +1,24 @@
-# Use an official Python runtime as the base image
-FROM python:3.9
+FROM python:3.10-slim
 
-# Set the working directory in the container
-WORKDIR /app
+EXPOSE 5002
 
-# Copy the requirements file to the container
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
+# Install pip requirements
 COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
 
-# Install the required dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /app
+COPY . /app
 
-# Copy the application code to the container
-COPY . .
-
-# Expose the port your Flask application listens on
-EXPOSE 5000
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
 # Specify the command to run your Flask application
 CMD ["python", "index.py"]

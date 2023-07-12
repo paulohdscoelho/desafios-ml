@@ -14,7 +14,7 @@ def index():
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
     model = ResNet_pt().to(device)
-    model.load_state_dict(torch.load(PATH))
+    model.load_state_dict(torch.load(PATH,map_location=device))
     model.eval()
     
     if request.method == 'POST':
@@ -39,11 +39,13 @@ def index():
         with torch.no_grad():
             output = model(image)
             _, predicted = torch.max(output, 1)
-            predicted_label = "spoof" if predicted.item() == 0 else "live"                        
+            predicted_label = "spoof" if predicted.item() == 0 else "live"                
+            confidence = torch.nn.functional.softmax(output, dim=1)[0] * 100
+            confidence = round(confidence[predicted.item()].item(),2)                                   
     
-        return render_template('result.html', predicted_label=predicted_label, image_path=image_path)    
+        return render_template('result.html', predicted_label=predicted_label, image_path=image_path, confidence=confidence)    
     
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0')
