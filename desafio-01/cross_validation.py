@@ -52,7 +52,7 @@ def main():
     #criando optimizer com learning rate de 0.001, momentum de 0.9 e weight decay de 0.001 para evitar overfitting
 
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9, weight_decay=0.001) 
-    class_weights = pickle.load(open('weights.pkl', 'rb'))
+    class_weights = pickle.load(open('input/weights.pkl', 'rb'))
 
     for fold, (train_idx,val_idx) in enumerate(kf.split(np.arange(len(dataset)))):
 
@@ -115,7 +115,7 @@ def main():
     
     torch.save(model,'k_cross_ResNet_balanced.pt')      
     
-    pickle.dump(foldperf, open('foldperf.pkl_balanced', 'wb'))
+    pickle.dump(foldperf, open('foldperf_balanced.pkl', 'wb'))
 
 if __name__ == '__main__':
     main()    

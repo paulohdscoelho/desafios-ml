@@ -17,7 +17,7 @@ class ImageDataset(Dataset):
             if os.path.isdir(id_folder_path):
                 for class_folder in os.listdir(id_folder_path):
                     class_folder_path = os.path.join(id_folder_path, class_folder)
-                    if os.path.isdir(class_folder_path):
+                    if os.path.isdir(class_folder_path): #verify if it is a folder
                         class_label = 1 if class_folder == 'live' else 0  # Label é 1 se a pasta for live, 0 se for spoof
                         for image_file in os.listdir(class_folder_path):
                             image_path = os.path.join(class_folder_path, image_file)
