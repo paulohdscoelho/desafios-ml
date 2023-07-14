@@ -68,8 +68,6 @@ def plota_graficos(foldperf, title):
 
       # Show the combined plot
       plt.show()
-    
-
 
 def class_imbalance(dataset):
     class_counts = np.bincount(dataset.labels)
