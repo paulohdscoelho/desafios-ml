@@ -29,9 +29,9 @@ def mostra_sumario(foldperf):
 
     print('Performance do {} fold cross validation'.format(k))     
 
-    print(f"Average Training Loss: {np.mean(train_loss_f):.3f} \t Average Test Loss: {np.mean(test_loss_f):.3f} \t Average Training Acc: {np.mean(train_acc_f):.2f} \t Average Test Acc: {np.mean(test_acc_f):.2f}")
-    print(f"Training Precision: {np.mean(train_precision_f):.3f} \t Test Precision: {np.mean(test_precision_f):.3f} \t Training Recall: {np.mean(train_recall_f):.2f} \t Test Recall: {np.mean(test_recall_f):.2f}")
-    print(f"Training F1: {np.mean(train_f1_f):.3f} \t Test F1: {np.mean(test_f1_f):.3f}")
+    print(f"Average Training Loss: {np.mean(train_loss_f):.3f} \t Average Test Loss: {np.mean(test_loss_f):.3f} \t Average Test Acc: {np.mean(test_acc_f):.2f}")
+    print(f"Test Precision: {np.mean(test_precision_f):.3f} \t Test Recall: {np.mean(test_recall_f):.2f}")
+    print(f"Test F1-score: {np.mean(test_f1_f):.3f}")
 
 def plota_graficos(foldperf, title):
       k = 5

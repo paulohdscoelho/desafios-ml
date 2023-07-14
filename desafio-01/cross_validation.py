@@ -22,7 +22,7 @@ from train import train_epoch
 from valid import valid_epoch
 
 
-def main():
+def module():
     torch.manual_seed(42)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -36,6 +36,8 @@ def main():
 
     history = {'train_loss': [], 'test_loss': [],'train_acc':[],'test_acc':[], 'train_precision':[], 'test_precision':[],'train_recall' :[], 'test_recall':[], 'train_f1':[], 'test_f1':[]}
 
+    #Transformando os dados para o formato aceito pela rede. Normalizando pela média e desvio padrão do dataset, calculados anteriormente
+    
     transformation = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -47,7 +49,7 @@ def main():
 
     model = ResNet_pt().to(device)
 
-    criterion = nn.CrossEntropyLoss()
+    loss_fn = nn.CrossEntropyLoss()
     
     #criando optimizer com learning rate de 0.001, momentum de 0.9 e weight decay de 0.001 para evitar overfitting
 
@@ -75,8 +77,8 @@ def main():
         pickle.dump(test_loader, open(f'output/test_loader_fold{fold}.pkl', 'wb'))
                
         for epoch in range(num_epochs):
-            train_loss, train_correct, train_precision, train_recall, train_f1_score = train_epoch(model, train_loader, criterion, optimizer, device)
-            test_loss, test_correct, test_precision, test_recall, test_f1_score =valid_epoch(model, test_loader, criterion, device)
+            train_loss, train_correct, train_precision, train_recall, train_f1_score = train_epoch(model, train_loader, loss_fn, optimizer, device)
+            test_loss, test_correct, test_precision, test_recall, test_f1_score =valid_epoch(model, test_loader, loss_fn, device)
 
             train_loss = train_loss / len(train_loader.sampler)
             train_acc = train_correct / len(train_loader.sampler) * 100
@@ -122,4 +124,4 @@ def main():
     
 
 if __name__ == '__main__':
-    main()    
+    module()    
