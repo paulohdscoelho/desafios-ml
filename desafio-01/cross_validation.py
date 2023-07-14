@@ -70,6 +70,9 @@ def main():
 
         train_loader = DataLoader(dataset, batch_size=batch_size, sampler=train_sampler)
         test_loader = DataLoader(dataset, batch_size=batch_size, sampler=test_sampler)
+
+        #save test dataloader
+        pickle.dump(test_loader, open(f'output/test_loader_fold{fold}.pkl', 'wb'))
                
         for epoch in range(num_epochs):
             train_loss, train_correct, train_precision, train_recall, train_f1_score = train_epoch(model, train_loader, criterion, optimizer, device)
@@ -116,6 +119,7 @@ def main():
     torch.save(model,'k_cross_ResNet_balanced.pt')      
     
     pickle.dump(foldperf, open('foldperf_balanced.pkl', 'wb'))
+    
 
 if __name__ == '__main__':
     main()    

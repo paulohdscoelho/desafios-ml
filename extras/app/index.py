@@ -6,12 +6,12 @@ import torchvision.transforms as transforms
 from model import ResNet_pt
 
 app = Flask(__name__)
-PATH = "static/k_cross_ResNet_balanced_state_dic.pt"
+PATH = "static/k_cross_ResNet_balanced_state_dict.pt"
 
 @app.route('/',methods=['GET','POST'])
 def index():
     
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     
     model = ResNet_pt().to(device)
     model.load_state_dict(torch.load(PATH,map_location=device))
@@ -48,4 +48,4 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=5001)

@@ -36,13 +36,13 @@ def mostra_sumario(foldperf):
 def plota_graficos(foldperf, title):
       k = 5
 
-      diz_ep = {'train_loss_ep':[],'test_loss_ep':[],'train_acc_ep':[],'test_acc_ep':[]}
+      diz_ep = {'train_loss_ep':[],'test_loss_ep':[],'train_recall_ep':[],'test_recall_ep':[]}
 
       for i in range(10):
             diz_ep['train_loss_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['train_loss'][i] for f in range(k)]))
             diz_ep['test_loss_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['test_loss'][i] for f in range(k)]))
-            diz_ep['train_acc_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['train_acc'][i] for f in range(k)]))
-            diz_ep['test_acc_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['test_acc'][i] for f in range(k)]))
+            diz_ep['train_recall_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['train_recall'][i] for f in range(k)]))
+            diz_ep['test_recall_ep'].append(np.mean([foldperf['fold{}'.format(f+1)]['test_recall'][i] for f in range(k)]))
 
       # Create a figure with two subplots
       fig, axs = plt.subplots(1, 2, figsize=(16, 8))
@@ -56,10 +56,10 @@ def plota_graficos(foldperf, title):
       axs[0].set_title(title)
 
       # Plot accuracies
-      axs[1].semilogy(diz_ep['train_acc_ep'], label='Train')
-      axs[1].semilogy(diz_ep['test_acc_ep'], label='Test')
+      axs[1].semilogy(diz_ep['train_recall_ep'], label='Train')
+      axs[1].semilogy(diz_ep['test_recall_ep'], label='Test')
       axs[1].set_xlabel('Epoch')
-      axs[1].set_ylabel('Accuracy')
+      axs[1].set_ylabel('Recall')
       axs[1].legend()
       axs[1].set_title(title)
 
