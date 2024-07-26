@@ -1,6 +1,6 @@
 # README - Agente de Aprendizado para Otimização de Experiência do Usuário
 
-Este README descreve as decisões de projeto e fornece instruções sobre como implementar e treinar um agente de aprendizado para otimizar a experiência do usuário em um site de e-commerce, aumentando o número de conversões por meio de recomendações personalizadas. Todo o processo é detalhado no notebook `Brius_questao2.ipynb`.
+Este projeto apresenta a solução para a Questão 2 do case técnico - Data Scientist para a Etus Media, descreve as decisões de projeto e fornece instruções sobre como implementar e treinar um agente de aprendizado para otimizar a experiência do usuário em um site de e-commerce, aumentando o número de conversões por meio de recomendações personalizadas. Todo o processo é detalhado no notebook `ETUS_media_questao2.ipynb`.
 
 ## Decisões de Projeto
 

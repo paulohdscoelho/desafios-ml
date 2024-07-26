@@ -6,6 +6,19 @@ Este projeto apresenta a solução para a Questão 1 do case técnico - Data Sci
 
 As decisões de projeto foram cuidadosamente pensadas para garantir segurança, eficiência e facilidade de uso, proporcionando insights valiosos para as áreas de marketing e vendas.
 
+## Como Executar o Projeto
+
+Versão do Python utilizada: Python 3.10.8
+Versão do Pip utilizada: pip pip 22.3.1
+
+1. **Instalar Dependências**:
+   ```bash
+   pip install -r requirements.txt
+   
+   ```
+2. **Executar o notebook**:
+   Acesse o notebook `ETUS_media_questao1.ipynb` e siga o fluxo das células para executar o projeto e entender as análises realizadas.
+
 ## Decisões de Projeto
 
 ### Autenticação e Acesso aos Dados
@@ -34,7 +47,14 @@ As análises focaram em métricas essenciais para o desempenho do e-commerce, es
 
 ### Dashboard Interativo
 
-A apresentação dos dados foi realizada através de um dashboard interativo, criado com a biblioteca `Dash` do Plotly. Esta abordagem permite a visualização dos dados de forma dinâmica e atraente, facilitando a exploração dos dados por usuários que não possuem conhecimento técnico em análise de dados. O dashboard inclui múltiplas abas com gráficos interativos e um mapa, proporcionando uma experiência completa e intuitiva para o usuário final.
+A apresentação dos dados foi realizada através de um dashboard interativo, criado com a biblioteca `Dash` do Plotly. Esta abordagem permite a visualização dos dados de forma dinâmica e atraente, facilitando a exploração dos dados por usuários que não possuem conhecimento técnico em análise de dados. O dashboard inclui múltiplas abas com gráficos interativos e um mapa, proporcionando uma 
+experiência completa e intuitiva para o usuário final. Abaixo está um exemplo de como o dashboard se parece:
+
+![alt text](image.png)
+
+#### Mapa Interativo:
+
+![alt text](image-1.png)
 
 ## Conclusões das Análises
 
@@ -47,12 +67,4 @@ Para as análises estatísticas da receita dos produtos, optei por utilizar os m
 4. **Distribuição Geográfica**: O mapa interativo permite identificar regiões com maior densidade de clientes, facilitando o direcionamento de campanhas de marketing e expansão de mercado.
 
 
-## Como Executar o Projeto
 
-1. **Instalar Dependências**:
-   ```bash
-   pip install -r requirements.txt
-   
-   ```
-2. **Executar o notebook**:
-   Acesse o notebook `BRIUS_questao1.ipynb` e siga o fluxo das células para executar o projeto e entender as análises realizadas.
