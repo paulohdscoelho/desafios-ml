@@ -55,4 +55,4 @@ Para as análises estatísticas da receita dos produtos, optei por utilizar os m
    
    ```
 2. **Executar o notebook**:
-   Acesse o notebook `BRIUS_dashboard.ipynb` e siga o fluxo das células para executar o projeto e entender as análises realizadas.
+   Acesse o notebook `BRIUS_questao1.ipynb` e siga o fluxo das células para executar o projeto e entender as análises realizadas.
